@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset134 STHeitiSC-Light;\f2\fnil\fcharset134 PingFangSC-Regular;
+\f3\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red29\green133\blue25;\red110\green32\blue13;\red186\green0\blue17;
+\red0\green116\blue0;\red170\green13\blue145;\red92\green38\blue153;\red46\green13\blue110;\red100\green56\blue32;
+\red196\green26\blue22;\red38\green71\blue75;\red63\green110\blue116;\red28\green0\blue207;\red2\green61\blue16;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww23040\viewh12040\viewkind0
+\deftab866
+\pard\tx866\pardeftab866\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf2 \CocoaLigature0 /**1.\cf3  link \cf4 AVFoundation.framework \cf2  */\cf0 \
+\cf3 \
+\cf2 /**2.\cf3  #import \cf4 <AVFoundation/AVFoundation.h> \cf2  */\cf0 \
+\cf3 \
+\cf2 /**3.\cf3  
+\f1 \'bf\'bd\'b1\'b4\'d2\'d4\'cf\'c2\'b4\'fa\'c2\'eb
+\f0 \cf4  \cf2  */\
+\pard\tx674\pardeftab674\pardirnatural\partightenfactor0
+
+\fs28 \cf5 /*!\
+ *  
+\f2 \'c9\'a8\'d2\'bb\'c9\'a8
+\f0 \
+ */
+\fs36 \cf0 \
+
+\fs28 - (\cf6 void\cf0 )intoQRCodeVC \{\
+    \cf7 NSString\cf0  *mediaType = \cf7 AVMediaTypeVideo\cf0 ;\
+    \cf7 AVAuthorizationStatus\cf0  authStatus = [\cf7 AVCaptureDevice\cf0  \cf8 authorizationStatusForMediaType\cf0 :mediaType];\
+    \cf6 if\cf0 (authStatus == \cf8 AVAuthorizationStatusDenied\cf0 )\{\
+        \cf6 if\cf0  (\cf9 IS_VAILABLE_IOS8\cf0 ) \{\
+            \cf7 UIAlertController\cf0  *alert = [\cf7 UIAlertController\cf0  \cf8 alertControllerWithTitle\cf0 :\cf10 @"
+\f2 \'cf\'e0\'bb\'fa\'c8\'a8\'cf\'de\'ca\'dc\'cf\'de
+\f0 "\cf0  \cf8 message\cf0 :\cf10 @"
+\f2 \'c7\'eb\'d4\'da
+\f0 iPhone
+\f2 \'b5\'c4
+\f0 \\"
+\f2 \'c9\'e8\'d6\'c3
+\f0 ->
+\f2 \'d2\'fe\'cb\'bd
+\f0 ->
+\f2 \'cf\'e0\'bb\'fa
+\f0 \\"
+\f2 \'d1\'a1\'cf\'ee\'d6\'d0
+\f0 ,
+\f2 \'d4\'ca\'d0\'ed
+\f0 \\"
+\f2 \'d7\'d4\'d3\'ce\'b0\'ee
+\f0 \\"
+\f2 \'b7\'c3\'ce\'ca\'c4\'fa\'b5\'c4\'cf\'e0\'bb\'fa
+\f0 ."\cf0  \cf8 preferredStyle\cf0 :\cf8 UIAlertControllerStyleAlert\cf0 ];\
+            [alert \cf8 addAction\cf0 :[\cf7 UIAlertAction\cf0  \cf8 actionWithTitle\cf0 :\cf10 @"
+\f2 \'ba\'c3
+\f0 "\cf0  \cf8 style\cf0 :\cf8 UIAlertActionStyleCancel\cf0  \cf8 handler\cf0 :^(\cf7 UIAlertAction\cf0  * \cf6 _Nonnull\cf0  action) \{\
+            \}]];\
+            [alert \cf8 addAction\cf0 :[\cf7 UIAlertAction\cf0  \cf8 actionWithTitle\cf0 :\cf10 @"
+\f2 \'c8\'a5\'c9\'e8\'d6\'c3
+\f0 "\cf0  \cf8 style\cf0 :\cf8 UIAlertActionStyleDefault\cf0  \cf8 handler\cf0 :^(\cf7 UIAlertAction\cf0  * \cf6 _Nonnull\cf0  action) \{\
+                \cf6 if\cf0  ([\cf6 self\cf0  \cf11 canOpenSystemSettingView\cf0 ]) \{\
+                    [\cf6 self\cf0  \cf11 systemSettingView\cf0 ];\
+                \}\
+            \}]];\
+            [\cf6 self\cf0  \cf8 presentViewController\cf0 :alert \cf8 animated\cf0 :\cf6 YES\cf0  \cf8 completion\cf0 :\cf6 nil\cf0 ];\
+        \} \cf6 else\cf0  \{\
+            \cf7 UIAlertView\cf0  *alert = [[\cf7 UIAlertView\cf0  \cf8 alloc\cf0 ] \cf8 initWithTitle\cf0 :\cf10 @"
+\f2 \'cf\'e0\'bb\'fa\'c8\'a8\'cf\'de\'ca\'dc\'cf\'de
+\f0 "\cf0  \cf8 message\cf0 :\cf10 @"
+\f2 \'c7\'eb\'d4\'da
+\f0 iPhone
+\f2 \'b5\'c4
+\f0 \\"
+\f2 \'c9\'e8\'d6\'c3
+\f0 ->
+\f2 \'d2\'fe\'cb\'bd
+\f0 ->
+\f2 \'cf\'e0\'bb\'fa
+\f0 \\"
+\f2 \'d1\'a1\'cf\'ee\'d6\'d0
+\f0 ,
+\f2 \'d4\'ca\'d0\'ed
+\f0 \\"
+\f2 \'d7\'d4\'d3\'ce\'b0\'ee
+\f0 \\"
+\f2 \'b7\'c3\'ce\'ca\'c4\'fa\'b5\'c4\'cf\'e0\'bb\'fa
+\f0 ."\cf0  \cf8 delegate\cf0 :\cf6 nil\cf0  \cf8 cancelButtonTitle\cf0 :\cf10 @"
+\f2 \'ba\'c3\'b5\'c4
+\f0 "\cf0  \cf8 otherButtonTitles\cf0 :\cf6 nil\cf0 ];\
+            [alert \cf8 show\cf0 ];\
+        \}\
+\
+        \cf6 return\cf0 ;\
+    \}\
+    \
+    \cf12 QRCodeController\cf0  *qrcodeVC = [[\cf12 QRCodeController\cf0  \cf8 alloc\cf0 ] \cf8 init\cf0 ];\
+    qrcodeVC.\cf7 view\cf0 .\cf7 alpha\cf0  = \cf13 0\cf0 ;\
+    [qrcodeVC \cf11 setDidReceiveBlock\cf0 :^(\cf7 NSString\cf0  *result) \{\
+        \cf8 NSLog\cf0 (\cf10 @"%@"\cf0 , result);\
+    \}];\
+    \cf12 AppDelegate\cf0  *del = (\cf12 AppDelegate\cf0  *)[\cf7 UIApplication\cf0  \cf8 sharedApplication\cf0 ].\cf7 delegate\cf0 ;\
+    [del.\cf12 window\cf0 .\cf7 rootViewController\cf0  \cf8 addChildViewController\cf0 :qrcodeVC];\
+    [del.\cf12 window\cf0 .\cf7 rootViewController\cf0 .\cf7 view\cf0  \cf8 addSubview\cf0 :qrcodeVC.\cf7 view\cf0 ];\
+    [\cf7 UIView\cf0  \cf8 animateWithDuration\cf0 :\cf13 0.3\cf0  \cf8 delay\cf0 :\cf13 0\cf0  \cf8 options\cf0 :\cf8 UIViewAnimationOptionCurveEaseInOut\cf0  \cf8 animations\cf0 :^\{\
+        qrcodeVC.\cf7 view\cf0 .\cf7 alpha\cf0  = \cf13 1\cf0 ;\
+    \} \cf8 completion\cf0 :^(\cf6 BOOL\cf0  finished) \{\
+    \}];\
+\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab866\pardirnatural\partightenfactor0
+
+\f3\fs24 \cf0 \CocoaLigature1 \
+\pard\tx674\pardeftab674\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf5 \CocoaLigature0 /**\
+ *  
+\f2 \'ca\'c7\'b7\'f1\'bf\'c9\'d2\'d4\'b4\'f2\'bf\'aa\'c9\'e8\'d6\'c3\'d2\'b3\'c3\'e6
+\f0 \
+ *\
+ *  \cf14 @return\cf5 \
+ */\cf0 \
+- (\cf6 BOOL\cf0 )canOpenSystemSettingView \{\
+    \cf6 if\cf0  (\cf9 IS_VAILABLE_IOS8\cf0 ) \{\
+        \cf7 NSURL\cf0  *url = [\cf7 NSURL\cf0  \cf8 URLWithString\cf0 :\cf7 UIApplicationOpenSettingsURLString\cf0 ];\
+        \cf6 if\cf0  ([[\cf7 UIApplication\cf0  \cf8 sharedApplication\cf0 ] \cf8 canOpenURL\cf0 :url]) \{\
+            \cf6 return\cf0  \cf6 YES\cf0 ;\
+        \} \cf6 else\cf0  \{\
+            \cf6 return\cf0  \cf6 NO\cf0 ;\
+        \}\
+    \} \cf6 else\cf0  \{\
+        \cf6 return\cf0  \cf6 NO\cf0 ;\
+    \}\
+\}\
+\
+\cf5 /**\
+ *  
+\f2 \'cc\'f8\'b5\'bd\'cf\'b5\'cd\'b3\'c9\'e8\'d6\'c3\'d2\'b3\'c3\'e6
+\f0 \
+ */\cf0 \
+- (\cf6 void\cf0 )systemSettingView \{\
+    \cf6 if\cf0  (\cf9 IS_VAILABLE_IOS8\cf0 ) \{\
+        \cf7 NSURL\cf0  *url = [\cf7 NSURL\cf0  \cf8 URLWithString\cf0 :\cf7 UIApplicationOpenSettingsURLString\cf0 ];\
+        \cf6 if\cf0  ([[\cf7 UIApplication\cf0  \cf8 sharedApplication\cf0 ] \cf8 canOpenURL\cf0 :url]) \{\
+            [[\cf7 UIApplication\cf0  \cf8 sharedApplication\cf0 ] \cf8 openURL\cf0 :url];\
+        \}\
+    \}\
+\}\
+\
+}
