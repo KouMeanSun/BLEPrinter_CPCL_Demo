@@ -244,6 +244,9 @@
     NSString *ENDQR = @"ENDQR\n";
     NSData   *endQRData = [ENDQR dataUsingEncoding:GBK_Encoding];
     [self.finalData appendData:endQRData];
+    NSLog(@"QR_CODE_TEMPLATE1:%@",QR_CODE_TEMPLATE1);
+    NSLog(@"QR_CODE_TEMPLATE2:%@",QR_CODE_TEMPLATE2);
+    NSLog(@"ENDQR:%@",ENDQR);
 }
 /**
  *  打印图片

@@ -15,6 +15,9 @@
 #import "JQESCTool.h"
 #import "JQCPCLTool.h"
 #import "QPBleInfoTool.h"
+#import "UIImage+Bitmap.h"
+
+#define GBK_Encoding CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
 
 @interface FirstViewController ()<UITableViewDelegate,UITableViewDataSource,BleDeviceManagerDelegate>
 @property (nonatomic,strong)UITableView *tableView;
@@ -46,7 +49,10 @@
                                                      @"二维码打印测试",
                                                      @"图片打印测试",
                                                      @"运单打印测试",
-                                                     @"标签打印测试"]];
+                                                     @"标签打印测试",
+                                                     @"文本CPCL指令测试",
+                                                     @"文本CPCL指令打印图片",
+                                                     @"文本CPCL指令打印电话图片"]];
     //打印纸的宽度，实际可能需要调整，开发先用这个来测试
     self.pageWidth = 588;
     //打印纸的高度，实际可能需要调整，开发先用这个来测试
@@ -107,6 +113,15 @@
         case 6:
             [self pushPrintTagTest];
             break;
+        case 7:
+            [self pushTextCPCLCodeTest];
+            break;
+        case 8:
+            [self pushTextImgCPCLPrintTest];
+            break;
+        case 9:
+            [self pushTextPhoneImgCPCLPrintTest];
+            break;
         default:
             break;
     }
@@ -124,6 +139,80 @@
     [alert addAction:done];
     [self presentViewController:alert animated:YES completion:nil];
 }
+//文本打印电话图片测试
+-(void)pushTextPhoneImgCPCLPrintTest{
+    NSError *error;
+    NSString *textContents = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"phoneimg" ofType:@"txt"] encoding:NSUTF8StringEncoding error:&error];
+    if (error) {
+        NSLog(@"获取文本失败!error:%@",error);
+        return;
+    }
+    NSData *cpclCode = [textContents dataUsingEncoding:GBK_Encoding];
+    [self.bleManager writeData:cpclCode];
+    NSLog(@"textContents:%@",textContents);
+}
+
+
+//文本图片打印测试
+-(void)pushTextImgCPCLPrintTest{
+    NSError *error;
+    NSString *textContents = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"img" ofType:@"txt"] encoding:NSUTF8StringEncoding error:&error];
+    if (error) {
+        NSLog(@"获取文本失败!error:%@",error);
+        return;
+    }
+//    UIImage *image = [UIImage imageNamed:@"sflogo.png"];
+//    UIImage *newImage = [image imageWithscaleMaxWidth:500];
+//    newImage = [newImage blackAndWhiteImage];
+//
+//    NSString *hex = [self.cpclManager picToBitmbp:newImage];
+//    //    NSString *hex = [self UIImageToBase64Str:image];
+//
+//    NSInteger hei = image.size.height;
+//    NSInteger wid = image.size.width;
+//    if (wid % 8 > 0) {
+//        wid = wid / 8;
+//    }else{
+//        wid = wid / 8 - 1;
+//    }
+//    NSString *widStr = [NSString stringWithFormat:@"%ld",wid];
+//    NSString *heiStr = [NSString stringWithFormat:@"%ld",hei];
+    NSData *cpclCode = [textContents dataUsingEncoding:GBK_Encoding];
+    [self.bleManager writeData:cpclCode];
+    NSLog(@"textContents:%@",textContents);
+}
+
+// 文本指令测试
+-(void)pushTextCPCLCodeTest{
+    NSError *error;
+    NSString *textContents = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"order" ofType:@"txt"] encoding:NSUTF8StringEncoding error:&error];
+    if (error) {
+        NSLog(@"获取文本失败!error:%@",error);
+        return;
+    }
+    UIImage *image = [UIImage imageNamed:@"sflogoandphone"];
+    UIImage *newImage = [image imageWithscaleMaxWidth:500];
+    newImage = [newImage blackAndWhiteImage];
+    
+    NSString *hex = [self.cpclManager picToBitmbp:newImage];
+    
+    NSInteger hei = image.size.height;
+    NSInteger wid = image.size.width;
+    if (wid % 8 > 0) {
+        wid = wid / 8;
+    }else{
+        wid = wid / 8 - 1;
+    }
+    NSString *widStr = [NSString stringWithFormat:@"%ld",wid];
+    NSString *heiStr = [NSString stringWithFormat:@"%ld",hei];
+    NSString *replacedStr1 = [textContents stringByReplacingOccurrencesOfString:@"SFLOGOWIDTH" withString:widStr];
+    NSString *replacedStr2 = [replacedStr1 stringByReplacingOccurrencesOfString:@"SFLOGOHEIGHT" withString:heiStr];
+    NSString *replacedStr3 = [replacedStr2 stringByReplacingOccurrencesOfString:@"SFLOGOIMAGEDATA" withString:hex];
+    NSLog(@"replacedStr3:%@",replacedStr3);
+    NSData *cpclCode = [replacedStr3 dataUsingEncoding:GBK_Encoding];
+    [self.bleManager writeData:cpclCode];
+}
+
 // 进入文字打印测试   能够打印
 -(void)pushTextTestController{
 //    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
@@ -227,9 +316,9 @@
 //    //2、初始化 进入打印 控制指令
     [self.cpclManager pageSetup:568 pageHeight:800 qty:1];
 //    //3、打印图片
-    [self.cpclManager drawGraphic:220 start_y:20 picName:@"sflogo.png"];
+//    [self.cpclManager drawGraphic:20 start_y:20 picName:@"phonepng24"];
 //    //test
-//    [self.cpclManager drawGraphicWithX:20 y:20 imageName:@"sflogo.png"];
+    [self.cpclManager drawGraphicWithX:220 y:20 imageName:@"phonepng24"];
 //    [self.escManager esc_print_ImageWithWidth:10 height:10 x:8 y:8 imageName:@"phone.png"];
 //    [self.escManager esc_print_text:@"你是个演员演员" font:2 size:0 x:21 y:10];
 //    //4、调用打印命令
@@ -267,13 +356,15 @@
         [self.cpclManager drawBox:(1) top_left_x:(0) top_left_y:([QPBleInfoTool commonsetIntWithMM:0]) bottom_right_x:(self.pageWidth) bottom_right_y:(self.pageHeight-100)];
         
         [self.cpclManager drawBox:(1) top_left_x:(0) top_left_y:([QPBleInfoTool commonsetIntWithMM:0]) bottom_right_x:([QPBleInfoTool commonsetIntWithMM:86]) bottom_right_y:([QPBleInfoTool commonsetIntWithMM:18])];
+        
         // 顺丰和悟空logo
-//        [self.cpclManager drawGraphic:[QPBleInfoTool commonsetIntWithMM:2] start_y:[QPBleInfoTool commonsetIntWithMM:2] picName:@"sflogo"];
-//        [self.cpclManager drawGraphicWithX:[QPBleInfoTool commonsetIntWithMM:2] y:[QPBleInfoTool commonsetIntWithMM:2] imageName:@"sflogo"];
+//         [self.cpclManager drawGraphicWithX:[QPBleInfoTool commonsetIntWithMM:39] y:[QPBleInfoTool commonsetIntWithMM:2] imageName:@"phone"];
+        [self.cpclManager drawGraphic:[QPBleInfoTool commonsetIntWithMM:2] start_y:[QPBleInfoTool commonsetIntWithMM:2] picName:@"sflogoz"];
+        [self.cpclManager drawGraphicWithX:[QPBleInfoTool commonsetIntWithMM:2] y:[QPBleInfoTool commonsetIntWithMM:2] imageName:@"sflogo"];
         //9533866
-//        [self.cpclManager drawGraphic:[QPBleInfoTool commonsetIntWithMM:39] start_y:[QPBleInfoTool commonsetIntWithMM:2] picName:@"phone"];
 //        [self.cpclManager drawGraphicWithX:[QPBleInfoTool commonsetIntWithMM:39] y:[QPBleInfoTool commonsetIntWithMM:2] imageName:@"phone"];
-       
+        //test
+//       [self.cpclManager drawGraphicWithX:[QPBleInfoTool commonsetIntWithMM:2] y:[QPBleInfoTool commonsetIntWithMM:2] imageName:@"sflogo"];
         // 悟空快运栏=====================
         [self.cpclManager drawBox:(2) top_left_x:(0) top_left_y:([QPBleInfoTool commonsetIntWithMM:18]) bottom_right_x:([QPBleInfoTool commonsetIntWithMM:86]) bottom_right_y:([QPBleInfoTool commonsetIntWithMM:37])];
         // 条形码

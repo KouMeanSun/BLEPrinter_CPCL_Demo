@@ -7,6 +7,7 @@
 //  提供打印服务
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface JQCPCLTool : NSObject
 
@@ -138,4 +139,8 @@
  *  重置打印机
  */
 -(void)reset;
+/**
+ 把图片转化成16进制字符串
+ **/
+- (NSMutableString *)picToBitmbp:(UIImage *)image;
 @end
