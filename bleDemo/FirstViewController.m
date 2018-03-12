@@ -56,7 +56,7 @@
     //打印纸的宽度，实际可能需要调整，开发先用这个来测试
     self.pageWidth = 588;
     //打印纸的高度，实际可能需要调整，开发先用这个来测试
-    self.pageHeight = 860;
+    self.pageHeight = 800;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -184,33 +184,33 @@
 
 // 文本指令测试
 -(void)pushTextCPCLCodeTest{
-    NSError *error;
-    NSString *textContents = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"order" ofType:@"txt"] encoding:NSUTF8StringEncoding error:&error];
-    if (error) {
-        NSLog(@"获取文本失败!error:%@",error);
-        return;
-    }
-    UIImage *image = [UIImage imageNamed:@"sflogoandphone"];
-    UIImage *newImage = [image imageWithscaleMaxWidth:500];
-    newImage = [newImage blackAndWhiteImage];
-    
-    NSString *hex = [self.cpclManager picToBitmbp:newImage];
-    
-    NSInteger hei = image.size.height;
-    NSInteger wid = image.size.width;
-    if (wid % 8 > 0) {
-        wid = wid / 8;
-    }else{
-        wid = wid / 8 - 1;
-    }
-    NSString *widStr = [NSString stringWithFormat:@"%ld",wid];
-    NSString *heiStr = [NSString stringWithFormat:@"%ld",hei];
-    NSString *replacedStr1 = [textContents stringByReplacingOccurrencesOfString:@"SFLOGOWIDTH" withString:widStr];
-    NSString *replacedStr2 = [replacedStr1 stringByReplacingOccurrencesOfString:@"SFLOGOHEIGHT" withString:heiStr];
-    NSString *replacedStr3 = [replacedStr2 stringByReplacingOccurrencesOfString:@"SFLOGOIMAGEDATA" withString:hex];
-    NSLog(@"replacedStr3:%@",replacedStr3);
-    NSData *cpclCode = [replacedStr3 dataUsingEncoding:GBK_Encoding];
-    [self.bleManager writeData:cpclCode];
+//    NSError *error;
+//    NSString *textContents = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"order" ofType:@"txt"] encoding:NSUTF8StringEncoding error:&error];
+//    if (error) {
+//        NSLog(@"获取文本失败!error:%@",error);
+//        return;
+//    }
+//    UIImage *image = [UIImage imageNamed:@"sflogoandphone"];
+//    UIImage *newImage = [image imageWithscaleMaxWidth:500];
+//    newImage = [newImage blackAndWhiteImage];
+//
+//    NSString *hex = [self.cpclManager picToBitmbp:newImage];
+//
+//    NSInteger hei = image.size.height;
+//    NSInteger wid = image.size.width;
+//    if (wid % 8 > 0) {
+//        wid = wid / 8;
+//    }else{
+//        wid = wid / 8 - 1;
+//    }
+//    NSString *widStr = [NSString stringWithFormat:@"%ld",wid];
+//    NSString *heiStr = [NSString stringWithFormat:@"%ld",hei];
+//    NSString *replacedStr1 = [textContents stringByReplacingOccurrencesOfString:@"SFLOGOWIDTH" withString:widStr];
+//    NSString *replacedStr2 = [replacedStr1 stringByReplacingOccurrencesOfString:@"SFLOGOHEIGHT" withString:heiStr];
+//    NSString *replacedStr3 = [replacedStr2 stringByReplacingOccurrencesOfString:@"SFLOGOIMAGEDATA" withString:hex];
+//    NSLog(@"replacedStr3:%@",replacedStr3);
+//    NSData *cpclCode = [replacedStr3 dataUsingEncoding:GBK_Encoding];
+//    [self.bleManager writeData:cpclCode];
 }
 
 // 进入文字打印测试   能够打印
@@ -343,6 +343,10 @@
         return;
     }
 //-------------
+    [MBProgressHUD showMessage:@"开始打印，新北洋BTP-P33大约需要45秒。。。。"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,45*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUD];
+    });
     dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
     dispatch_async(globalQueue, ^{
         [self.cpclManager reset];
@@ -358,13 +362,13 @@
         [self.cpclManager drawBox:(1) top_left_x:(0) top_left_y:([QPBleInfoTool commonsetIntWithMM:0]) bottom_right_x:([QPBleInfoTool commonsetIntWithMM:86]) bottom_right_y:([QPBleInfoTool commonsetIntWithMM:18])];
         
         // 顺丰和悟空logo
-//         [self.cpclManager drawGraphicWithX:[QPBleInfoTool commonsetIntWithMM:39] y:[QPBleInfoTool commonsetIntWithMM:2] imageName:@"phone"];
-        [self.cpclManager drawGraphic:[QPBleInfoTool commonsetIntWithMM:2] start_y:[QPBleInfoTool commonsetIntWithMM:2] picName:@"sflogoz"];
-        [self.cpclManager drawGraphicWithX:[QPBleInfoTool commonsetIntWithMM:2] y:[QPBleInfoTool commonsetIntWithMM:2] imageName:@"sflogo"];
+//        [self.cpclManager drawGraphic:[QPBleInfoTool commonsetIntWithMM:2] start_y:[QPBleInfoTool commonsetIntWithMM:2] picName:@"sflogoz"];
+        [self.cpclManager printSFAndWKLogoWithX:[QPBleInfoTool commonsetIntWithMM:2] y:[QPBleInfoTool commonsetIntWithMM:2]];
+
         //9533866
-//        [self.cpclManager drawGraphicWithX:[QPBleInfoTool commonsetIntWithMM:39] y:[QPBleInfoTool commonsetIntWithMM:2] imageName:@"phone"];
         //test
 //       [self.cpclManager drawGraphicWithX:[QPBleInfoTool commonsetIntWithMM:2] y:[QPBleInfoTool commonsetIntWithMM:2] imageName:@"sflogo"];
+        [self.cpclManager printSFAndWKPhoneWithX:[QPBleInfoTool commonsetIntWithMM:39] y:[QPBleInfoTool commonsetIntWithMM:2]];
         // 悟空快运栏=====================
         [self.cpclManager drawBox:(2) top_left_x:(0) top_left_y:([QPBleInfoTool commonsetIntWithMM:18]) bottom_right_x:([QPBleInfoTool commonsetIntWithMM:86]) bottom_right_y:([QPBleInfoTool commonsetIntWithMM:37])];
         // 条形码
@@ -457,14 +461,6 @@
         
         [self.cpclManager print:0 skip:0];
         
-        //-------test
-//        [self.cpclManager reset];
-//        [self.cpclManager pageSetup:(0) pageHeight:(0) qty:(1)];
-//        [self.cpclManager drawText:0 text_y:0 text:@"" fontSize:2 rotate:0 bold:0 reverse:NO underline:NO];
-//        //4、调用打印命令，
-//         Byte esc_print_enter[] = {0x0D};
-//        [self.cpclManager.finalData appendBytes:esc_print_enter length:sizeof(esc_print_enter)];
-        //-------end test
     });
     
     
@@ -494,8 +490,10 @@
         [self.cpclManager drawBox:(1) top_left_x:(0) top_left_y:([QPBleInfoTool commonsetIntWithMM:0]) bottom_right_x:([QPBleInfoTool commonsetIntWithMM:86]) bottom_right_y:([QPBleInfoTool commonsetIntWithMM:18])];
         // 顺丰和悟空logo
 //        [self.cpclManager drawGraphic:[QPBleInfoTool commonsetIntWithMM:2] start_y:[QPBleInfoTool commonsetIntWithMM:2] picName:@"sflogo"];
+        [self.cpclManager printSFAndWKLogoWithX:[QPBleInfoTool commonsetIntWithMM:2] y:[QPBleInfoTool commonsetIntWithMM:2]];
         //9533866
 //        [self.cpclManager drawGraphic:[QPBleInfoTool commonsetIntWithMM:40] start_y:[QPBleInfoTool commonsetIntWithMM:2] picName:@"phone"];
+        [self.cpclManager printSFAndWKPhoneWithX:[QPBleInfoTool commonsetIntWithMM:39] y:[QPBleInfoTool commonsetIntWithMM:2]];
         // 悟空快运栏=====================
         [self.cpclManager drawBox:(2) top_left_x:(0) top_left_y:([QPBleInfoTool commonsetIntWithMM:18]) bottom_right_x:([QPBleInfoTool commonsetIntWithMM:86]) bottom_right_y:([QPBleInfoTool commonsetIntWithMM:43])];
         // 条形码

@@ -3,11 +3,10 @@
 //  bleDemo
 //
 //  Created by 高明阳(01370716) on 2018/2/6.
-//  Copyright © 2018年 wuyaju. All rights reserved.
+//  Copyright © 2018年 gaomingyang. All rights reserved.
 //  提供打印服务
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 @interface JQCPCLTool : NSObject
 
@@ -140,7 +139,13 @@
  */
 -(void)reset;
 /**
- 把图片转化成16进制字符串
+ 打印顺丰logo图片
  **/
-- (NSMutableString *)picToBitmbp:(UIImage *)image;
+-(void)printSFAndWKLogoWithX:(int)x y:(int)y;
+/**
+ 打印顺丰电话图片
+ **/
+-(void)printSFAndWKPhoneWithX:(int)x y:(int)y;
+
 @end
+

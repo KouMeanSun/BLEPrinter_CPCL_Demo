@@ -11,12 +11,8 @@
 		4C012AF31CAECA8400685095 /* QPBleInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C012AF21CAECA8400685095 /* QPBleInfoTool.m */; };
 		4C092BA01CB3FDCC00E438DC /* erweima.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C092B9F1CB3FDCC00E438DC /* erweima.jpg */; };
 		4C098E181CB09B38003BAEA0 /* print.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C098E171CB09B38003BAEA0 /* print.png */; };
-		4C0C66901CB94F3F00CD2511 /* JQBaseLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C668F1CB94F3F00CD2511 /* JQBaseLine.m */; };
-		4C0C66931CB959AA00CD2511 /* JQLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C66921CB959AA00CD2511 /* JQLine.m */; };
-		4C0C66961CB9694200CD2511 /* JQLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C66951CB9694200CD2511 /* JQLabel.m */; };
 		4C0C66991CB974DF00CD2511 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C66981CB974DF00CD2511 /* NSString+Extension.m */; };
 		4C0F5BD71CB00E840000E8FD /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0F5BD61CB00E830000E8FD /* CoreBluetooth.framework */; };
-		4C116E7A1CB9828C00319756 /* JQLabelField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C116E791CB9828C00319756 /* JQLabelField.m */; };
 		4C1B77551CB15DD100F27DC8 /* Default-568h@3x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C1B774E1CB15DD100F27DC8 /* Default-568h@3x-1.png */; };
 		4C1B77561CB15DD100F27DC8 /* QRCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1B77501CB15DD100F27DC8 /* QRCodeController.m */; };
 		4C1B77571CB15DD100F27DC8 /* 使用说明.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4C1B77511CB15DD100F27DC8 /* 使用说明.rtf */; };
@@ -65,7 +61,8 @@
 		4CFD85DF1CAC1D6F00A56E93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD85DE1CAC1D6F00A56E93 /* AppDelegate.m */; };
 		4CFE97681CB9191700C3285F /* UIImage+OrientationFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE97671CB9191700C3285F /* UIImage+OrientationFix.m */; };
 		4CFE976A1CB91A5000C3285F /* 123.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 4CFE97691CB91A5000C3285F /* 123.bmp */; };
-		4CFE976E1CB9346E00C3285F /* JQBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE976D1CB9346E00C3285F /* JQBox.m */; };
+		5A42F51E20561FA000219137 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A42F51D20561FA000219137 /* phone.png */; };
+		5A42F52020561FA600219137 /* sflogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A42F51F20561FA600219137 /* sflogo.png */; };
 		84947070202932FA00E8D660 /* JQCPCLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8494706F202932FA00E8D660 /* JQCPCLTool.m */; };
 		84947072202955DF00E8D660 /* sflogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84947071202955DE00E8D660 /* sflogo.png */; };
 		84A1C4EE2022E594001B5476 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1C4ED2022E594001B5476 /* FirstViewController.m */; };
@@ -105,17 +102,9 @@
 		4C012AF21CAECA8400685095 /* QPBleInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPBleInfoTool.m; sourceTree = "<group>"; };
 		4C092B9F1CB3FDCC00E438DC /* erweima.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = erweima.jpg; sourceTree = "<group>"; };
 		4C098E171CB09B38003BAEA0 /* print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = print.png; sourceTree = "<group>"; };
-		4C0C668E1CB94F3F00CD2511 /* JQBaseLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQBaseLine.h; sourceTree = "<group>"; };
-		4C0C668F1CB94F3F00CD2511 /* JQBaseLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQBaseLine.m; sourceTree = "<group>"; };
-		4C0C66911CB959AA00CD2511 /* JQLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQLine.h; sourceTree = "<group>"; };
-		4C0C66921CB959AA00CD2511 /* JQLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQLine.m; sourceTree = "<group>"; };
-		4C0C66941CB9694200CD2511 /* JQLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQLabel.h; sourceTree = "<group>"; };
-		4C0C66951CB9694200CD2511 /* JQLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQLabel.m; sourceTree = "<group>"; };
 		4C0C66971CB974DF00CD2511 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		4C0C66981CB974DF00CD2511 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		4C0F5BD61CB00E830000E8FD /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		4C116E781CB9828C00319756 /* JQLabelField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQLabelField.h; sourceTree = "<group>"; };
-		4C116E791CB9828C00319756 /* JQLabelField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQLabelField.m; sourceTree = "<group>"; };
 		4C1B774E1CB15DD100F27DC8 /* Default-568h@3x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@3x-1.png"; sourceTree = "<group>"; };
 		4C1B774F1CB15DD100F27DC8 /* QRCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeController.h; sourceTree = "<group>"; };
 		4C1B77501CB15DD100F27DC8 /* QRCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeController.m; sourceTree = "<group>"; };
@@ -205,8 +194,8 @@
 		4CFE97661CB9191700C3285F /* UIImage+OrientationFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+OrientationFix.h"; path = "SerialGATT/UIImage+OrientationFix.h"; sourceTree = "<group>"; };
 		4CFE97671CB9191700C3285F /* UIImage+OrientationFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+OrientationFix.m"; path = "SerialGATT/UIImage+OrientationFix.m"; sourceTree = "<group>"; };
 		4CFE97691CB91A5000C3285F /* 123.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = 123.bmp; path = SerialGATT/123.bmp; sourceTree = "<group>"; };
-		4CFE976C1CB9346E00C3285F /* JQBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQBox.h; sourceTree = "<group>"; };
-		4CFE976D1CB9346E00C3285F /* JQBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQBox.m; sourceTree = "<group>"; };
+		5A42F51D20561FA000219137 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = phone.png; path = ../../../../Downloads/phone.png; sourceTree = "<group>"; };
+		5A42F51F20561FA600219137 /* sflogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sflogo.png; path = ../../../../Downloads/sflogo.png; sourceTree = "<group>"; };
 		8494706E202932FA00E8D660 /* JQCPCLTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JQCPCLTool.h; sourceTree = "<group>"; };
 		8494706F202932FA00E8D660 /* JQCPCLTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JQCPCLTool.m; sourceTree = "<group>"; };
 		84947071202955DE00E8D660 /* sflogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sflogo.png; sourceTree = "<group>"; };
@@ -533,6 +522,8 @@
 		4CFD85E31CAC1E1E00A56E93 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5A42F51D20561FA000219137 /* phone.png */,
+				5A42F51F20561FA600219137 /* sflogo.png */,
 				4CFD85A31CAC1CC300A56E93 /* MainViewController.h */,
 				4CFD85A41CAC1CC300A56E93 /* MainViewController.m */,
 				4CCFE73B1EFCA57A0038F890 /* JQTextTestController.h */,
@@ -551,16 +542,6 @@
 		4CFE976B1CB9343600C3285F /* JQBlePrint */ = {
 			isa = PBXGroup;
 			children = (
-				4C0C668E1CB94F3F00CD2511 /* JQBaseLine.h */,
-				4C0C668F1CB94F3F00CD2511 /* JQBaseLine.m */,
-				4CFE976C1CB9346E00C3285F /* JQBox.h */,
-				4CFE976D1CB9346E00C3285F /* JQBox.m */,
-				4C0C66911CB959AA00CD2511 /* JQLine.h */,
-				4C0C66921CB959AA00CD2511 /* JQLine.m */,
-				4C0C66941CB9694200CD2511 /* JQLabel.h */,
-				4C0C66951CB9694200CD2511 /* JQLabel.m */,
-				4C116E781CB9828C00319756 /* JQLabelField.h */,
-				4C116E791CB9828C00319756 /* JQLabelField.m */,
 			);
 			name = JQBlePrint;
 			sourceTree = "<group>";
@@ -679,8 +660,10 @@
 				4CFD85C31CAC1CC300A56E93 /* 12.jpg in Resources */,
 				4CFD85CA1CAC1CC300A56E93 /* CollectionReusableHeaderView.xib in Resources */,
 				4CFD85CC1CAC1CC300A56E93 /* CollectionViewCell.xib in Resources */,
+				5A42F52020561FA600219137 /* sflogo.png in Resources */,
 				84F535AB2030116D00349375 /* img.txt in Resources */,
 				84F535B720303A3A00349375 /* sflogoz.png in Resources */,
+				5A42F51E20561FA000219137 /* phone.png in Resources */,
 				4C1B77551CB15DD100F27DC8 /* Default-568h@3x-1.png in Resources */,
 				84F535B320302AEA00349375 /* phonepng24.png in Resources */,
 				4CFB9D511CAF431F0009DE90 /* MBProgressHUD.bundle in Resources */,
@@ -727,8 +710,6 @@
 				4CFD85D81CAC1CC300A56E93 /* View+MASAdditions.m in Sources */,
 				4CFD85C61CAC1CC300A56E93 /* BaseViewController.m in Sources */,
 				4CFD85CE1CAC1CC300A56E93 /* MainViewController.m in Sources */,
-				4C0C66931CB959AA00CD2511 /* JQLine.m in Sources */,
-				4C0C66901CB94F3F00CD2511 /* JQBaseLine.m in Sources */,
 				4CFD85CB1CAC1CC300A56E93 /* CollectionViewCell.m in Sources */,
 				4CFD85D91CAC1CC300A56E93 /* ViewController+MASAdditions.m in Sources */,
 				4C012AF31CAECA8400685095 /* QPBleInfoTool.m in Sources */,
@@ -736,7 +717,6 @@
 				4CFD85D41CAC1CC300A56E93 /* MASViewAttribute.m in Sources */,
 				4CFD85D01CAC1CC300A56E93 /* MASCompositeConstraint.m in Sources */,
 				4CFD85601CAC178C00A56E93 /* main.m in Sources */,
-				4CFE976E1CB9346E00C3285F /* JQBox.m in Sources */,
 				4CCFE7381EFBF85E0038F890 /* JQTextTestView.m in Sources */,
 				4CFD85C91CAC1CC300A56E93 /* CollectionReusableHeaderView.m in Sources */,
 				4CFB9D501CAF431F0009DE90 /* MBProgressHUD+MJ.m in Sources */,
@@ -750,11 +730,9 @@
 				84947070202932FA00E8D660 /* JQCPCLTool.m in Sources */,
 				4CFB9D521CAF431F0009DE90 /* MBProgressHUD.m in Sources */,
 				4CFD85D61CAC1CC300A56E93 /* NSArray+MASAdditions.m in Sources */,
-				4C0C66961CB9694200CD2511 /* JQLabel.m in Sources */,
 				4CFD85C51CAC1CC300A56E93 /* BaseTableViewController.m in Sources */,
 				4C4C166C1EFB7EC300C1AA8E /* JQESCTool.m in Sources */,
 				4C1E661F1EFD508D00EDB0B8 /* JQBarcode1dController.m in Sources */,
-				4C116E7A1CB9828C00319756 /* JQLabelField.m in Sources */,
 				84A1C4EE2022E594001B5476 /* FirstViewController.m in Sources */,
 				4C001C641CAEBB9D00BF5E76 /* BleInfo.m in Sources */,
 				4CFD85C81CAC1CC300A56E93 /* BleDeviceManagerViewController.m in Sources */,
