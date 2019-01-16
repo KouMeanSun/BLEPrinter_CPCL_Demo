@@ -46,7 +46,61 @@
  * @param text 表示所要打印的文本内容。
  */
 - (Boolean)esc_print_text:(NSString *)text {
-    return [self.bleManager writeText:text];
+    
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSData *data = [text dataUsingEncoding:enc];
+    [self.finalData appendData:data];
+    return 0;
+}
+
+- (Boolean)barcodePrintQR:(int)size data:(NSString *)data {
+    
+
+    //发送设置QR码参数
+    typedef unsigned char BYTE;
+    BYTE pszCommand1[16] = {0};
+    pszCommand1[0] = 0x1d;
+    pszCommand1[1] = 0x28;
+    pszCommand1[2] = 0x6b;
+    pszCommand1[3] = 0x03;
+    pszCommand1[4] = 0x00;
+    pszCommand1[5] = 0x31;
+    pszCommand1[6] = 0x43;
+    pszCommand1[7] = size;
+    pszCommand1[8] = 0x1d;
+    pszCommand1[9] = 0x28;
+    pszCommand1[10] = 0x6b;
+    pszCommand1[11] = (data.length + 3);
+    pszCommand1[12] = 0x00;
+    pszCommand1[13] = 0x31;
+    pszCommand1[14] = 0x50;
+    pszCommand1[15] = 0x30;
+    
+    //[self.bleManager writeCmd:pszCommand1 cmdLenth:sizeof(pszCommand1)];
+    
+    [self.finalData appendBytes:pszCommand1 length:sizeof(pszCommand1)];
+    
+    //发送QR码数据
+    NSData *dataSource = [data dataUsingEncoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)];
+    [self.finalData appendData:dataSource];
+    //[self.bleManager writeCmd:[dataSource bytes] cmdLenth:sizeof([dataSource bytes])];
+    
+    //发送结束数据
+    BYTE pszCommand3[8] = {0};
+    pszCommand3[0] = 0x1d;
+    pszCommand3[1] = 0x28;
+    pszCommand3[2] = 0x6b;
+    pszCommand3[3] = 0x03;
+    pszCommand3[4] = 0x00;
+    pszCommand3[5] = 0x31;
+    pszCommand3[6] = 0x51;
+    pszCommand3[7] = 0x30;
+    
+    
+      [self.finalData appendBytes:pszCommand3 length:sizeof(pszCommand3)];
+    return 0;
+    
+    
 }
 
 /**
@@ -143,6 +197,7 @@
     Byte esc_print_enter[] = {0x0D};
     return [self.bleManager writeCmd:esc_print_enter cmdLenth:sizeof(esc_print_enter)];
 }
+
 
 /**
  * 13、设定右侧字符间距。
@@ -253,6 +308,196 @@
 - (Boolean)esc_default_line_height {
     Byte esc_default_line_height[] = {0x1B, 0x32};
     return [self.bleManager writeCmd:esc_default_line_height cmdLenth:sizeof(esc_default_line_height)];
+}
+
+/**
+ 选择打印模式
+
+ @param mode 1，行模式 0，页模式
+ @return 执行结果
+ */
+-(Boolean)esc_SelectPrintMode:(int)mode
+{
+
+    if(mode==0)
+    {
+        Byte byteL[] = {27, 83};
+       // return [self.bleManager writeCmd:byteL cmdLenth:sizeof(byteL)];
+           [self.finalData appendBytes:byteL length:sizeof(byteL)];
+    }
+    if(mode==1)
+    {
+        Byte byteS[] = {27, 76};
+        [self.finalData appendBytes:byteS length:sizeof(byteS)];;
+       // return [self.bleManager writeCmd:byteS cmdLenth:sizeof(byteS)];
+    }
+    return 0;
+}
+- (Boolean)systemFeedLine
+{
+    Byte byteL[] = {27, 83};
+    return [self.bleManager writeCmd:byteL cmdLenth:sizeof(byteL)];
+}
+/**
+ 打印纸张
+
+ @param PaperType 0.标签纸 1，黑标纸
+ @return 执行结果
+ */
+-(Boolean)esc_systemSelectPaperType:(int)PaperType
+{
+    Byte pszCommand[] = {27, 99, 48, 0};
+    if(PaperType==0)
+    {
+        pszCommand[3] = (Byte)PaperType;
+     //   return [self.bleManager writeCmd:pszCommand cmdLenth:sizeof(pszCommand)];
+    }
+    if(PaperType==1)
+    {
+        pszCommand[3] = (Byte)PaperType;
+     //   return [self.bleManager writeCmd:pszCommand cmdLenth:sizeof(pszCommand)];
+    }
+    if(PaperType==2)
+    {
+         pszCommand[3] = (Byte)PaperType;
+      //  return [self.bleManager writeCmd:pszCommand cmdLenth:sizeof(pszCommand)];
+    }
+    [self.finalData appendBytes:pszCommand length:sizeof(pszCommand)];
+    return 0;
+}
+
+/**
+ 打印区域
+
+ @param X x
+ @param Y y
+ @param AreaWidth 宽
+ @param AreaHeight 高
+ @return 执行结果
+ */
+-(Boolean)pageModeSetPrintAreawithX:(int)X Y:(int)Y AreaWidth:(int)AreaWidth AreaHeight:(int)AreaHeight
+{
+    
+    Byte pszCommand[10];
+    int nOrgxH = X / 256;
+    int nOrgxL = X % 256;
+    int nOrgyH = Y / 256;
+    int nOrgyL = Y % 256;
+    int nWidthH = AreaWidth / 256;
+    int nWidthL = AreaWidth % 256;
+    int nHighH = AreaHeight / 256;
+    int nHighL = AreaHeight % 256;
+    pszCommand[0] = 27;
+    pszCommand[1] = 87;
+    pszCommand[2] = (Byte)nOrgxL;
+    pszCommand[3] = (Byte)nOrgxH;
+    pszCommand[4] = (Byte)nOrgyL;
+    pszCommand[5] = (Byte)nOrgyH;
+    pszCommand[6] = (Byte)nWidthL;
+    pszCommand[7] = (Byte)nWidthH;
+    pszCommand[8] = (Byte)nHighL;
+    pszCommand[9] = (Byte)nHighH;
+    
+    [self.finalData appendBytes:pszCommand length:sizeof(pszCommand)];
+    
+   return 0;
+}
+
+/**
+ 打印起点
+
+ @param X x
+ @param Y y
+ @return 执行结果
+ */
+-(Boolean)standardModeSetHorStartingPositionX:(int)X Y:(int)Y
+{
+    
+    Byte pszCommandx[4];
+    int nHigh = X / 256;
+    int nLow = X % 256;
+    pszCommandx[0] = 27;
+    pszCommandx[1] = 36;
+    pszCommandx[2] = (Byte)nLow;
+    pszCommandx[3] = (Byte)nHigh;
+    
+      [self.finalData appendBytes:pszCommandx length:sizeof(pszCommandx)];
+    //[self.bleManager writeCmd:pszCommandx cmdLenth:sizeof(pszCommandx)];
+    
+    
+    Byte pszCommandY[4];
+    int nHighY = Y / 256;
+    int nLowY = Y % 256;
+    pszCommandY[0] = 29;
+    pszCommandY[1] = 36;
+    pszCommandY[2] = (Byte)nLowY;
+    pszCommandY[3] = (Byte)nHighY;
+    
+      [self.finalData appendBytes:pszCommandY length:sizeof(pszCommandY)];
+    
+   return 0;
+    
+}
+
+/**
+ 打印字符串
+
+ @param Text 字符串
+ @return  执行结果
+ */
+-(Boolean)textPrint:(NSString *)Text
+{
+    
+
+    
+    NSData *testData = [Text dataUsingEncoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)];
+    
+    Byte *testByte = (Byte *)[testData bytes];
+    [self.finalData appendBytes:testByte length:sizeof(testByte)];
+    return 0;
+    
+}
+/**
+ 打印字符串
+ 
+ @param Text 字符串
+ @return  执行结果
+ */
+-(Boolean)esc_printtext:(NSString *)text
+{
+    
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSData *data = [text dataUsingEncoding:enc];
+    NSUInteger size = data.length;
+    void *textdata = malloc(size);
+    [data getBytes:textdata length:size];
+     return [self.bleManager writeCmd:textdata cmdLenth:sizeof(size)];
+ 
+    
+}
+/**
+打印命令
+ 
+ @return  执行结果
+ */
+-(Boolean)esc_prints
+{
+    Byte esc_print_enter[] = {0x0c};
+    
+    [self.finalData appendBytes:esc_print_enter length:sizeof(esc_print_enter)];
+    [self.bleManager writeData:self.finalData];
+    return 0;
+  //  return [self.bleManager writeCmd:esc_print_enter cmdLenth:sizeof(esc_print_enter)];
+}
+/**
+ 打印命令
+ 
+ @return  执行结果
+ */
+-(Boolean)esc_pageModePrint
+{
+    Byte pageModePrint[] = {27, 12};
+    return [self.bleManager writeCmd:pageModePrint cmdLenth:sizeof(pageModePrint)];
 }
 
 /**

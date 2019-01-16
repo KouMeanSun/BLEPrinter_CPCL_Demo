@@ -36,7 +36,6 @@
 		4CFD856E1CAC178C00A56E93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CFD856C1CAC178C00A56E93 /* LaunchScreen.storyboard */; };
 		4CFD85791CAC178C00A56E93 /* bleDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD85781CAC178C00A56E93 /* bleDemoTests.m */; };
 		4CFD85841CAC178C00A56E93 /* bleDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD85831CAC178C00A56E93 /* bleDemoUITests.m */; };
-		4CFD85C31CAC1CC300A56E93 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CFD85911CAC1CC300A56E93 /* 12.jpg */; };
 		4CFD85C41CAC1CC300A56E93 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD85931CAC1CC300A56E93 /* BaseNavigationController.m */; };
 		4CFD85C51CAC1CC300A56E93 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD85951CAC1CC300A56E93 /* BaseTableViewController.m */; };
 		4CFD85C61CAC1CC300A56E93 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD85971CAC1CC300A56E93 /* BaseViewController.m */; };
@@ -60,22 +59,12 @@
 		4CFD85DA1CAC1CC300A56E93 /* BleDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD85C21CAC1CC300A56E93 /* BleDeviceManager.m */; };
 		4CFD85DF1CAC1D6F00A56E93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD85DE1CAC1D6F00A56E93 /* AppDelegate.m */; };
 		4CFE97681CB9191700C3285F /* UIImage+OrientationFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE97671CB9191700C3285F /* UIImage+OrientationFix.m */; };
-		4CFE976A1CB91A5000C3285F /* 123.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 4CFE97691CB91A5000C3285F /* 123.bmp */; };
-		5A42F51E20561FA000219137 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A42F51D20561FA000219137 /* phone.png */; };
-		5A42F52020561FA600219137 /* sflogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A42F51F20561FA600219137 /* sflogo.png */; };
 		84947070202932FA00E8D660 /* JQCPCLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8494706F202932FA00E8D660 /* JQCPCLTool.m */; };
-		84947072202955DF00E8D660 /* sflogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84947071202955DE00E8D660 /* sflogo.png */; };
 		84A1C4EE2022E594001B5476 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1C4ED2022E594001B5476 /* FirstViewController.m */; };
 		84A1C4F320254CA6001B5476 /* UIImage+Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1C4F220254CA6001B5476 /* UIImage+Bitmap.m */; };
-		84A1C4F52025657D001B5476 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A1C4F42025657D001B5476 /* phone.png */; };
 		84F535A9202FE2DC00349375 /* order.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84F535A8202FE2DB00349375 /* order.txt */; };
 		84F535AB2030116D00349375 /* img.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84F535AA2030116D00349375 /* img.txt */; };
 		84F535AD2030225D00349375 /* phoneimg.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84F535AC2030225D00349375 /* phoneimg.txt */; };
-		84F535AF2030267500349375 /* sflogoandphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F535AE2030267400349375 /* sflogoandphone.png */; };
-		84F535B12030277D00349375 /* sflogoandphone2.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F535B02030277D00349375 /* sflogoandphone2.png */; };
-		84F535B320302AEA00349375 /* phonepng24.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F535B220302AEA00349375 /* phonepng24.png */; };
-		84F535B5203038F100349375 /* sflogozhanglei.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F535B4203038F000349375 /* sflogozhanglei.png */; };
-		84F535B720303A3A00349375 /* sflogoz.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F535B620303A3A00349375 /* sflogoz.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,7 +133,6 @@
 		4CFD857F1CAC178C00A56E93 /* bleDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bleDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CFD85831CAC178C00A56E93 /* bleDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bleDemoUITests.m; sourceTree = "<group>"; };
 		4CFD85851CAC178C00A56E93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4CFD85911CAC1CC300A56E93 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
 		4CFD85921CAC1CC300A56E93 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		4CFD85931CAC1CC300A56E93 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		4CFD85941CAC1CC300A56E93 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -193,25 +181,15 @@
 		4CFD85DE1CAC1D6F00A56E93 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4CFE97661CB9191700C3285F /* UIImage+OrientationFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+OrientationFix.h"; path = "SerialGATT/UIImage+OrientationFix.h"; sourceTree = "<group>"; };
 		4CFE97671CB9191700C3285F /* UIImage+OrientationFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+OrientationFix.m"; path = "SerialGATT/UIImage+OrientationFix.m"; sourceTree = "<group>"; };
-		4CFE97691CB91A5000C3285F /* 123.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = 123.bmp; path = SerialGATT/123.bmp; sourceTree = "<group>"; };
-		5A42F51D20561FA000219137 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = phone.png; path = ../../../../Downloads/phone.png; sourceTree = "<group>"; };
-		5A42F51F20561FA600219137 /* sflogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sflogo.png; path = ../../../../Downloads/sflogo.png; sourceTree = "<group>"; };
 		8494706E202932FA00E8D660 /* JQCPCLTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JQCPCLTool.h; sourceTree = "<group>"; };
 		8494706F202932FA00E8D660 /* JQCPCLTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JQCPCLTool.m; sourceTree = "<group>"; };
-		84947071202955DE00E8D660 /* sflogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sflogo.png; sourceTree = "<group>"; };
 		84A1C4EC2022E594001B5476 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		84A1C4ED2022E594001B5476 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		84A1C4F120254CA6001B5476 /* UIImage+Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bitmap.h"; sourceTree = "<group>"; };
 		84A1C4F220254CA6001B5476 /* UIImage+Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bitmap.m"; sourceTree = "<group>"; };
-		84A1C4F42025657D001B5476 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 		84F535A8202FE2DB00349375 /* order.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = order.txt; sourceTree = "<group>"; };
 		84F535AA2030116D00349375 /* img.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = img.txt; sourceTree = "<group>"; };
 		84F535AC2030225D00349375 /* phoneimg.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phoneimg.txt; sourceTree = "<group>"; };
-		84F535AE2030267400349375 /* sflogoandphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sflogoandphone.png; sourceTree = "<group>"; };
-		84F535B02030277D00349375 /* sflogoandphone2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sflogoandphone2.png; sourceTree = "<group>"; };
-		84F535B220302AEA00349375 /* phonepng24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phonepng24.png; sourceTree = "<group>"; };
-		84F535B4203038F000349375 /* sflogozhanglei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sflogozhanglei.png; sourceTree = "<group>"; };
-		84F535B620303A3A00349375 /* sflogoz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sflogoz.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,15 +352,6 @@
 		4CFD855E1CAC178C00A56E93 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				84F535B620303A3A00349375 /* sflogoz.png */,
-				84F535B4203038F000349375 /* sflogozhanglei.png */,
-				84F535B02030277D00349375 /* sflogoandphone2.png */,
-				84F535AE2030267400349375 /* sflogoandphone.png */,
-				84A1C4F42025657D001B5476 /* phone.png */,
-				84F535B220302AEA00349375 /* phonepng24.png */,
-				84947071202955DE00E8D660 /* sflogo.png */,
-				4CFD85911CAC1CC300A56E93 /* 12.jpg */,
-				4CFE97691CB91A5000C3285F /* 123.bmp */,
 				4CFD85671CAC178C00A56E93 /* Main.storyboard */,
 				4CFD856A1CAC178C00A56E93 /* Assets.xcassets */,
 				4CFD856C1CAC178C00A56E93 /* LaunchScreen.storyboard */,
@@ -522,8 +491,6 @@
 		4CFD85E31CAC1E1E00A56E93 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5A42F51D20561FA000219137 /* phone.png */,
-				5A42F51F20561FA600219137 /* sflogo.png */,
 				4CFD85A31CAC1CC300A56E93 /* MainViewController.h */,
 				4CFD85A41CAC1CC300A56E93 /* MainViewController.m */,
 				4CCFE73B1EFCA57A0038F890 /* JQTextTestController.h */,
@@ -613,7 +580,7 @@
 				TargetAttributes = {
 					4CFD855A1CAC178C00A56E93 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 36MR3ZX2X2;
+						DevelopmentTeam = 388CQ2BCV6;
 					};
 					4CFD85731CAC178C00A56E93 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -654,33 +621,22 @@
 			files = (
 				4CFD85CF1CAC1CC300A56E93 /* Info.plist in Resources */,
 				4C092BA01CB3FDCC00E438DC /* erweima.jpg in Resources */,
-				84F535AF2030267500349375 /* sflogoandphone.png in Resources */,
 				4C1B77571CB15DD100F27DC8 /* 使用说明.rtf in Resources */,
-				84947072202955DF00E8D660 /* sflogo.png in Resources */,
-				4CFD85C31CAC1CC300A56E93 /* 12.jpg in Resources */,
 				4CFD85CA1CAC1CC300A56E93 /* CollectionReusableHeaderView.xib in Resources */,
 				4CFD85CC1CAC1CC300A56E93 /* CollectionViewCell.xib in Resources */,
-				5A42F52020561FA600219137 /* sflogo.png in Resources */,
 				84F535AB2030116D00349375 /* img.txt in Resources */,
-				84F535B720303A3A00349375 /* sflogoz.png in Resources */,
-				5A42F51E20561FA000219137 /* phone.png in Resources */,
 				4C1B77551CB15DD100F27DC8 /* Default-568h@3x-1.png in Resources */,
-				84F535B320302AEA00349375 /* phonepng24.png in Resources */,
 				4CFB9D511CAF431F0009DE90 /* MBProgressHUD.bundle in Resources */,
 				4C098E181CB09B38003BAEA0 /* print.png in Resources */,
 				4CCFE73A1EFBF86B0038F890 /* JQTextTestView.xib in Resources */,
 				4CFD856E1CAC178C00A56E93 /* LaunchScreen.storyboard in Resources */,
-				84F535B5203038F100349375 /* sflogozhanglei.png in Resources */,
 				84F535AD2030225D00349375 /* phoneimg.txt in Resources */,
-				4CFE976A1CB91A5000C3285F /* 123.bmp in Resources */,
-				84A1C4F52025657D001B5476 /* phone.png in Resources */,
 				4CFD856B1CAC178C00A56E93 /* Assets.xcassets in Resources */,
 				4CFD85691CAC178C00A56E93 /* Main.storyboard in Resources */,
 				4C1B77591CB15DD100F27DC8 /* 扫描线@2x.png in Resources */,
 				4C1B77581CB15DD100F27DC8 /* 扫描框@2x.png in Resources */,
 				4C1B775A1CB15DD100F27DC8 /* 白色返回_想去@2x.png in Resources */,
 				84F535A9202FE2DC00349375 /* order.txt in Resources */,
-				84F535B12030277D00349375 /* sflogoandphone2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,7 +795,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 36MR3ZX2X2;
+				DEVELOPMENT_TEAM = 388CQ2BCV6;
 				INFOPLIST_FILE = bleDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sf.hlbluetooth;
@@ -958,7 +914,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 36MR3ZX2X2;
+				DEVELOPMENT_TEAM = 388CQ2BCV6;
 				INFOPLIST_FILE = bleDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sf.hlbluetooth;
@@ -973,7 +929,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 36MR3ZX2X2;
+				DEVELOPMENT_TEAM = 388CQ2BCV6;
 				INFOPLIST_FILE = bleDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sf.hlbluetooth;

@@ -144,14 +144,9 @@
     }
     
     NSString *printName  = self.bleManager.discoveredPeripheral.name;
-    int font =  7;
-    if([printName isEqualToString:@"HM-A300"]) {
-        font = 7;
-    }else if([printName isEqualToString:@"BTP-P33"]){
-        font = 3;
-    }
     
-    NSString *TEXT_CMD = [NSString stringWithFormat:@"TEXT %d %d %d %d %@\n",font,fontSize,text_x,text_y,text];
+    NSString *TEXT_CMD = [NSString stringWithFormat:@"TEXT %d %d %d %d %@\n",fontSize,1
+                          ,text_x,text_y,text];
     NSLog(@"TEXT_CMD_TEMPLATE:%@",TEXT_CMD);
     NSData *bytesData = [TEXT_CMD dataUsingEncoding:GBK_Encoding];
     [self.finalData appendData:bytesData];
@@ -238,12 +233,18 @@
  *  @param lel     QrCode纠错等级(0-20)
  */
 - (void)drawQrCode:(int)start_x start_y:(int)start_y text:(NSString *)text rotate:(int)rotate ver:(int)ver lel:(int)lel{
-    NSString *QR_CODE_TEMPLATE1 = [NSString stringWithFormat:@"B QR %d %d M %d U %d\n",start_x,start_y,2,5];
+    NSString *QR_CODE_TEMPLATE1 = [NSString stringWithFormat:@"B QR %d %d M %d U %d\n",start_x,start_y,2,4];
     NSData   *qrTemplate1Data = [QR_CODE_TEMPLATE1 dataUsingEncoding:GBK_Encoding];
     [self.finalData appendData:qrTemplate1Data];
-    NSString *QR_CODE_TEMPLATE2 = [NSString stringWithFormat:@"MA,QR code %@\n",text];// MA一些模式选择
+    
+    NSLog(@"%@",QR_CODE_TEMPLATE1);
+    
+    NSString *QR_CODE_TEMPLATE2 = [NSString stringWithFormat:@"LA,%@\n",text];// MA一些模式选择
     NSData   *qrTGemplate2Data = [QR_CODE_TEMPLATE2 dataUsingEncoding:GBK_Encoding];
     [self.finalData appendData:qrTGemplate2Data];
+    
+    NSLog(@"%@",QR_CODE_TEMPLATE2);
+    
     NSString *ENDQR = @"ENDQR\n";
     NSData   *endQRData = [ENDQR dataUsingEncoding:GBK_Encoding];
     [self.finalData appendData:endQRData];

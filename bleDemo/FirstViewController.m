@@ -43,7 +43,8 @@
     self.bleManager.delegate = self;
     self.cpclManager = [JQCPCLTool CPCLManager];
     self.escManager  = [JQESCTool ESCManager];
-    self.dataList = [NSMutableArray arrayWithArray:@[@"文字打印测试",
+    self.dataList = [NSMutableArray arrayWithArray:@[@"pos指令打印测试",
+                                                     @"cpcl指令打印测试",
                                                      @"条形码打印测试",
                                                      @"矩形打印测试",
                                                      @"二维码打印测试",
@@ -215,29 +216,144 @@
 
 // 进入文字打印测试   能够打印
 -(void)pushTextTestController{
-//    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//    JQBarcode1dController *jq =[[JQBarcode1dController alloc]init];
+//       UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//        JQBarcode1dController *vc = [story instantiateViewControllerWithIdentifier:@"JQBarcode1dController"];
+//   [self.navigationController pushViewController:vc animated:YES];
+//   UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
 //    JQTextTestController *vc = [story instantiateViewControllerWithIdentifier:@"JQTextTestController"];
 //    vc.title = @"文字打印测试";
 //    [self.navigationController pushViewController:vc animated:YES];
-    NSLog(@"点击了打印按钮");
-    // 判断当前是否连接蓝牙打印机
-    if (![self.bleManager isConnectBle]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"未连接设备！" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *done = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:done];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
+//    NSLog(@"点击了打印按钮");
+//    // 判断当前是否连接蓝牙打印机
+//    [self printWithModelindex:1];
+    
+    if (![self.escManager esc_reset]) return;
+    
+    [self.escManager esc_systemSelectPaperType:1];
+    [self.escManager esc_SelectPrintMode:1];
+    [self.escManager pageModeSetPrintAreawithX:0 Y:0 AreaWidth:750 AreaHeight:1440];
+    
+    
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:400];
+    [self.escManager barcodePrintQR:4 data:@"https://test.hyj-kj.com/apply/downLoad/?isScan=1&orderNum=hyj06342019011553300"];
+    
+    
+    
+    [self.escManager  standardModeSetHorStartingPositionX:180 Y:200];
+    [self.escManager esc_print_text:@"第1联（电子联单）"];
+    
+    
+    [self.escManager  standardModeSetHorStartingPositionX:180 Y:300];
+    [self.escManager esc_print_text:@"工单:hyj0274201808220001"];
+    
+    [self.escManager  standardModeSetHorStartingPositionX:180 Y:400];
+    [self.escManager esc_print_text:@"土方单位:深圳市金鼎盛土石方"];
+    
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:480];
+    [self.escManager esc_print_text:@"泥头车牌：粤B32961"];
+    
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:560];
+    [self.escManager esc_print_text:@"驾驶司机：粤B3219S1"];
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:640];
+    [self.escManager esc_print_text:@"所属车队：临时车"];
+    
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:720];
+    [self.escManager esc_print_text:@"放行人员：吴启晨"];
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:800];
+    [self.escManager esc_print_text:@"今日车次：1"];
+    
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:880];
+    [self.escManager esc_print_text:@"倒土方式：自倒"];
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:960];
+    [self.escManager esc_print_text:@"渣土类型：好土"];
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:1040];
+    [self.escManager esc_print_text:@"价    格：1元"];
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:1120];
+    [self.escManager esc_print_text:@"入场时间：2018-08-22  15:39:53"];
+    
+    
+    [self.escManager  standardModeSetHorStartingPositionX:30 Y:1200];
+    [self.escManager esc_print_text:@"进场时间：2018-08-22  15:40:05（白班）"];
+    
+    
+    
+    
+    
+  [self.escManager esc_prints];
+  //  [self.escManager esc_pageModePrint];
+    
+}
+
+
+
+-(void)printWithModelindex:(NSInteger)index
+{
+    
+    @try{
+        
+        [self.cpclManager reset];
+        
+        [self.cpclManager pageSetup:570 pageHeight:720 qty:1];
+
+        
+        for (NSInteger i = 0; i<index; i++) {
+            
+   /*
+    
+
+    
+    [[printer labelEdit] printText:@"0" y:0 fontName:@"2" content:dict[@"title"] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+
+    [labelEdit printBarcodeQR:30 y:80 angle:ROTATED_0 content:[dict[@"qrcode"] dataUsingEncoding:NSUTF8StringEncoding] ECCLever:QR_LEVEL_L cellWidth:4 model:QR_MODE_ENHANCED];
+
+    
+    [[printer labelEdit] printText:170 y:80 fontName:@"3" content:[NSString stringWithFormat:@"第%d联(电子联单)",index] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+
+    
+    [[printer labelEdit] printText:170 y:130 fontName:@"3" content:[NSString stringWithFormat:@"工单:%@",dict[@"ordernumber"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+
+    [[printer labelEdit] printText:170 y:180 fontName:@"3" content:[NSString stringWithFormat:@"土方单位:%@",Str]  angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+
+    
+    */
+                [self.cpclManager drawText:0  text_y:0 text:@"打印工地" fontSize:2  rotate:0 bold:0 reverse:NO underline:NO];
+          
+                [self.cpclManager drawQrCode:30  start_y:80 text:@"www.baidu.com" rotate:0 ver:0 lel:0];
+
+                [self.cpclManager drawText:170  text_y:80 text:@"打印工地" fontSize:2  rotate:0 bold:0 reverse:NO underline:NO];
+
+                [self.cpclManager drawText:170  text_y:130 text:@"打印工地" fontSize:2  rotate:0 bold:0 reverse:NO underline:NO];
+                [self.cpclManager drawText:170 text_y:180 text:@"打印工地" fontSize:2  rotate:0 bold:0 reverse:NO underline:NO];
+
+  
+     
+            
+        }
+        
+        [self.cpclManager print:0 skip:0];
+        
+    }@catch (NSException *e){
+
+    }@finally{
+
     }
+    
     //1、重置打印机
-    [self.cpclManager reset];
-    //2、初始化 进入打印 控制指令
-    [self.cpclManager pageSetup:568 pageHeight:800 qty:1];
-    //3、要打印的文字 水平方向
-    [self.cpclManager drawText:10 text_y:10 text:@"你就是个演员" fontSize:2 rotate:0 bold:0 reverse:NO underline:NO];
-    //3、测试打印垂直文字
-//    [self.cpclManager drawText:10 text_y:10 width:10 height:200 str:@"收件人" fontsize:2 rotate:0 bold:0 underline:0 reverse:0];
-    //4、调用打印命令，
-    [self.cpclManager print:0 skip:0];
+    
+    
+    
+    
 }
 // 进入条形码打印测试  现在打印出来的还是数组，不是条码
 -(void)pushBarcode1dController{
@@ -246,21 +362,111 @@
 //    vc.title = @"条形码打印测试";
 //    [self.navigationController pushViewController:vc animated:YES];
     // 判断当前是否连接蓝牙打印机
-    if (![self.bleManager isConnectBle]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"未连接设备！" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *done = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:done];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-    //1、重置打印机
+//    if (![self.bleManager isConnectBle]) {
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"未连接设备！" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *done = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+//        [alert addAction:done];
+//        [self presentViewController:alert animated:YES completion:nil];
+//        return;
+//    }
     [self.cpclManager reset];
-    //2、初始化 进入打印 控制指令
-    [self.cpclManager pageSetup:568 pageHeight:800 qty:1];
-    //3、打印条形码
-    [self.cpclManager drawBarCode:150 start_y:10 text:@"1234567890" type:1 rotate:0 linewidth:1 height:50];
+    
+    [self.cpclManager pageSetup:570 pageHeight:720 qty:1];
+    
+     [self.cpclManager drawText:150  text_y:0  text:@"测试工地" fontSize:2  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawQrCode:30 start_y:80 text:@"https://test.hyj-kj.com/apply/downLoad/?isScan=1&orderNum=hyj06342019011553300" rotate:0 ver:0 lel:0];
+      [self.cpclManager drawText:170  text_y:80  text:@"第1联(电子联单)" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:170  text_y:130  text:@"工单:hyj0274201808220001" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:170  text_y:180  text:@"土方单位:深圳市金鼎盛土石方有限公司" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:30  text_y:240   text:@"泥头车牌：粤B32961" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:30  text_y:280  text:@"驾驶司机：粤B3219S1" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:30  text_y:320  text:@"所属车队：临时车" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:30  text_y:360  text:@"放行人员：赖世路" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:30  text_y:400  text:@"今日车次：1" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:30  text_y:440  text:@"倒土方式：自倒" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+    [self.cpclManager drawText:30  text_y:480  text:@"渣土类型：好土" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+    [self.cpclManager drawText:30  text_y:520  text:@"价格：1元" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:30  text_y:560  text:@"入场时间：2018-08-22  15:39:53" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+     [self.cpclManager drawText:30  text_y:600  text:@"进场时间：2018-08-22  15:40:05（白班）" fontSize:3  rotate:0 bold:0 reverse:NO underline:NO];
+    
     //4、调用打印命令
     [self.cpclManager print:0 skip:0];
+    
+    
+//    [[printer printerConfigure] setPrintDirection:PRINT_DIRECTION_NORAML];
+//    LabelEdit *labelEdit = [printer labelEdit];
+//
+//    [labelEdit setLabelSize:570 height:720];
+    
+//    if (dict[@"title"]) {
+//        [[printer labelEdit] printText:[self XForTitle:dict[@"title"]] y:0 fontName:@"2" content:dict[@"title"] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//
+//    //  [labelEdit printLine:0 startY:100 endX:570 endY:100 thickness:2];
+//    if (dict[@"qrcode"]) {
+//        [labelEdit printBarcodeQR:30 y:80 angle:ROTATED_0 content:[dict[@"qrcode"] dataUsingEncoding:NSUTF8StringEncoding] ECCLever:QR_LEVEL_L cellWidth:4 model:QR_MODE_ENHANCED];
+//    }
+//
+//    [[printer labelEdit] printText:170 y:80 fontName:@"3" content:[NSString stringWithFormat:@"第%d联(电子联单)",index] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    // [labelEdit printBarcodeQR:80 y:220 angle:ROTATED_0 content:[dict[@"qrcode"] dataUsingEncoding:NSUTF8StringEncoding] ECCLever:QR_LEVEL_L cellWidth:4 model:QR_MODE_ENHANCED];
+//
+//
+//    if (dict[@"ordernumber"]) {
+//        [[printer labelEdit] printText:170 y:130 fontName:@"3" content:[NSString stringWithFormat:@"%@",dict[@"ordernumber"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//    NSString *Str =dict[@"dumperCompany"];
+//
+//    if (Str && Str.length <=12) {
+//        [[printer labelEdit] printText:170 y:180 fontName:@"3" content:[NSString stringWithFormat:@"土方单位:%@",Str]  angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }else if (Str && Str.length>12)
+//    {
+//        NSString * subString1 = [Str substringToIndex:12];
+//        NSString * subString2 = [Str substringFromIndex:12];
+//
+//        [[printer labelEdit] printText:170 y:180 fontName:@"3" content:[NSString stringWithFormat:@"土方单位:%@",subString1]  angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//        [[printer labelEdit] printText:280 y:205 fontName:@"3" content:[NSString stringWithFormat:@"%@",subString2]  angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//
+//
+//
+//
+//    if (dict[@"platenumber"]) {
+//        [[printer labelEdit] printText:30 y:240 fontName:@"3" content:[NSString stringWithFormat:@"%@",dict[@"platenumber"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//
+//    if(dict[@"driver"]){
+//        [[printer labelEdit] printText:30 y:280 fontName:@"3" content:[NSString stringWithFormat:@"%@",dict[@"driver"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//
+//
+//    if (dict[@"captain"]) {
+//        [[printer labelEdit] printText:30 y:320 fontName:@"3" content:[NSString stringWithFormat:@"%@",dict[@"captain"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//
+//    if (dict[@"releaseperson"]) {
+//        [[printer labelEdit] printText:30 y:360 fontName:@"3" content:[NSString stringWithFormat:@"%@",dict[@"releaseperson"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//
+//    if (dict[@"Poursoiltype"]) {
+//        [[printer labelEdit] printText:30 y:400 fontName:@"3" content:[NSString stringWithFormat:@"%@",dict[@"Poursoiltype"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//    if (dict[@"soiltype"]) {
+//        [[printer labelEdit] printText:30 y:440 fontName:@"3" content:[NSString stringWithFormat:@"%@",dict[@"soiltype"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//
+//    if (dict[@"price"]) {
+//        [[printer labelEdit] printText:30 y:480 fontName:@"3" content:[NSString stringWithFormat: @"%@",dict[@"price"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//    }
+//
+//
+//
+//    [[printer labelEdit] printText:30 y:520 fontName:@"3" content:[NSString stringWithFormat:@"%@",dict[@"intime"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//
+//    [[printer labelEdit] printText:30 y:560 fontName:@"3" content:[NSString stringWithFormat:@"%@",dict[@"outtime"]]angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+//
+//    [[printer labelEdit] printText:30 y:600 fontName:@"3" content: [NSString stringWithFormat:@"%@",dict[@"amount"]] angle:ROTATED_0 sizeHorizontal:1 sizeVertical:1];
+    
+    
 }
 //矩形打印测试
 -(void)pushBoxPrintTest{

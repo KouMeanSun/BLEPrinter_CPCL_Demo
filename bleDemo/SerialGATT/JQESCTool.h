@@ -19,12 +19,32 @@ typedef NS_ENUM(NSInteger, HLTextAlignment) {
 
 + (instancetype)ESCManager;
 
+
+
+- (Boolean)barcodePrintQR:(int)size data:(NSString *)data;
+
+- (Boolean)systemFeedLine;
+
+-(Boolean)esc_SelectPrintMode:(int)mode;
+
+
+-(Boolean)esc_systemSelectPaperType:(int)PaperType;
+
+
+-(Boolean)pageModeSetPrintAreawithX:(int)X Y:(int)Y AreaWidth:(int)AreaWidth AreaHeight:(int)AreaHeight;
+
+-(Boolean)standardModeSetHorStartingPositionX:(int)X Y:(int)Y;
+
+-(Boolean)textPrint:(NSString *)Text;
+-(Boolean)esc_prints;
+-(Boolean)esc_pageModePrint;
 /**
  * 3、打印文本。
  * @param text 表示所要打印的文本内容。
  */
 - (Boolean)esc_print_text:(NSString *)text;
 
+-(Boolean)esc_printtext:(NSString *)text;
 /**
  * 6、初始化打印机。
  * 使所有设置恢复到打印机开机时的默认值模式。
@@ -84,12 +104,9 @@ typedef NS_ENUM(NSInteger, HLTextAlignment) {
  */
 - (Boolean)esc_print_mode:(NSInteger)n;
 
-/**
- * 15、设置绝对打印位置。
- * 将当前位置设置到距离行首（nL+nH×256）×（横向或纵向移动单位）处。当nL＜0或nL＞255时将nL设置为0，当nH＜0或nH＞255时将nH设置为0。
- *
- */
-- (Boolean)esc_absolute_print_position:(NSInteger)nL nH:(NSInteger)nH;
+
+
+
 
 /**
  * 17、设置默认行高。
@@ -139,6 +156,25 @@ typedef NS_ENUM(NSInteger, HLTextAlignment) {
  */
 - (Boolean)esc_rotate:(NSInteger)n;
 
+
+/**
+ * 31、设定左边距。
+ * 当0≤nL≤255且0≤nH≤255时，将左边距设为【(nL+nH×256)×(水平移动单位)】。当nL和nH取其他值时将左边距设为0。
+ */
+- (Boolean)esc_left_margin:(NSInteger)nL nH:(NSInteger)nH;
+
+/**
+ * 32、设定横向和纵向移动单位。
+ * 当0≤x≤255且0≤y≤255时分别将水平和垂直移动单位设为25.4/x毫米和25.4/y毫米。当x和y取其他值时取x=0和Y=0。
+ */
+- (Boolean)esc_move_unit:(NSInteger)x y:(NSInteger)y;
+
+/**
+ * 15、设置绝对打印位置。
+ * 将当前位置设置到距离行首（nL+nH×256）×（横向或纵向移动单位）处。当nL＜0或nL＞255时将nL设置为0，当nH＜0或nH＞255时将nH设置为0。
+ *
+ */
+- (Boolean)esc_absolute_print_position:(NSInteger)nL nH:(NSInteger)nH;
 /**
  * 24、设定相对打印位置。
  * 将打印位置从当前位置移至（nL+nH×256）×（水平或垂直运动单位）。当nL＜0时设置nL=0，当nL＞255时设置nL=255。
@@ -200,17 +236,7 @@ typedef NS_ENUM(NSInteger, HLTextAlignment) {
  */
 - (Boolean)esc_black_white_reverse:(Boolean)b;
 
-/**
- * 31、设定左边距。
- * 当0≤nL≤255且0≤nH≤255时，将左边距设为【(nL+nH×256)×(水平移动单位)】。当nL和nH取其他值时将左边距设为0。
- */
-- (Boolean)esc_left_margin:(NSInteger)nL nH:(NSInteger)nH;
 
-/**
- * 32、设定横向和纵向移动单位。
- * 当0≤x≤255且0≤y≤255时分别将水平和垂直移动单位设为25.4/x毫米和25.4/y毫米。当x和y取其他值时取x=0和Y=0。
- */
-- (Boolean)esc_move_unit:(NSInteger)x y:(NSInteger)y;
 
 /**
  * 33、设定打印区域宽度。
@@ -290,6 +316,15 @@ typedef NS_ENUM(NSInteger, HLTextAlignment) {
  */
 - (Boolean)esc_barcode_1d:(NSInteger)HRI_position HRI_font:(NSInteger)HRI_font width:(NSInteger)width height:(NSInteger)height type:(NSInteger)type content:(NSString *)content;
 
+
+
+
+
+
+
+
+
+//===================================
 /**
  * 43、打印二维码。
  * @param type type表示二维码类型，当type=0时选择PDF417，当type=2时选择DATAMATRIX，当type取其他值时选择QRCODE。
